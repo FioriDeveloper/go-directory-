@@ -1,12 +1,15 @@
-package config
+package main
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 type Config struct {
 	AppPort string
 }
 
-func load() Config {
+func Load() Config {
 	return Config{
 		AppPort: getEnv("APP_PORT", "8080"),
 	}
@@ -17,4 +20,12 @@ func getEnv(key, defaultValue string) string {
 		return value
 	}
 	return defaultValue
+}
+
+func main() {
+
+	cfg := Load()
+
+	fmt.Println("Hello, World!", cfg.AppPort)
+
 }
